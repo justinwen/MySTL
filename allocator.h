@@ -11,7 +11,7 @@
 #include <new>
 
 namespace EasySTL {
-	template<class T, class Alloc>
+	template<class T, class Alloc>   //模板类
 	class simple_alloc {
 	public:
 		static T *allocate(size_t n) 
