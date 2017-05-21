@@ -3,11 +3,17 @@
 #include <cstddef>
 namespace EasySTL {
     //五种迭代器
-    struct input_iterator_tag{};
-    struct output_iterator_tag{};
-    struct forward_iterator_tag: public input_iterator_tag {};
-    struct bidirectional_iterator_tag : public forward_iterator_tag{};
-    struct random_access_iterator_tag : public bidirectional_iterator_tag{};
+    struct input_iterator_tag{};                
+    //这种迭代器所指的对象，不允许外界改变。只读(read only)
+    struct output_iterator_tag{};               
+    //唯写
+    struct forward_iterator_tag: public input_iterator_tag {};   
+    //允许写入型算法，在此迭代器所形成的区间上进行读写操作
+    struct bidirectional_iterator_tag : public forward_iterator_tag{};   
+    //可双向移动，某些算法需要逆向访问某个迭代器区间，可以使用Bidirectional iterator
+    struct random_access_iterator_tag : public bidirectional_iterator_tag{};  
+    //前四种迭代器都只供应一部分指针算术能力，前三种支持operator++,第四种支持operator--
+    //这一种则涵盖所有指针算数能力，包括 p+n, p-n, p[n], p1-p2, p1<p2。
 
     template<class T, class Distance>
     struct input_iterator {
